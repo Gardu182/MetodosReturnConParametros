@@ -1,0 +1,15 @@
+/Users/egarduno/Documents/PuntoNetUnidad2A3/bin/Debug/net6.0/PuntoNetUnidad2A3
+/Users/egarduno/Documents/PuntoNetUnidad2A3/bin/Debug/net6.0/PuntoNetUnidad2A3.deps.json
+/Users/egarduno/Documents/PuntoNetUnidad2A3/bin/Debug/net6.0/PuntoNetUnidad2A3.runtimeconfig.json
+/Users/egarduno/Documents/PuntoNetUnidad2A3/bin/Debug/net6.0/PuntoNetUnidad2A3.dll
+/Users/egarduno/Documents/PuntoNetUnidad2A3/bin/Debug/net6.0/PuntoNetUnidad2A3.pdb
+/Users/egarduno/Documents/PuntoNetUnidad2A3/obj/Debug/net6.0/PuntoNetUnidad2A3.csproj.AssemblyReference.cache
+/Users/egarduno/Documents/PuntoNetUnidad2A3/obj/Debug/net6.0/PuntoNetUnidad2A3.GeneratedMSBuildEditorConfig.editorconfig
+/Users/egarduno/Documents/PuntoNetUnidad2A3/obj/Debug/net6.0/PuntoNetUnidad2A3.AssemblyInfoInputs.cache
+/Users/egarduno/Documents/PuntoNetUnidad2A3/obj/Debug/net6.0/PuntoNetUnidad2A3.AssemblyInfo.cs
+/Users/egarduno/Documents/PuntoNetUnidad2A3/obj/Debug/net6.0/PuntoNetUnidad2A3.csproj.CoreCompileInputs.cache
+/Users/egarduno/Documents/PuntoNetUnidad2A3/obj/Debug/net6.0/PuntoNetUnidad2A3.dll
+/Users/egarduno/Documents/PuntoNetUnidad2A3/obj/Debug/net6.0/refint/PuntoNetUnidad2A3.dll
+/Users/egarduno/Documents/PuntoNetUnidad2A3/obj/Debug/net6.0/PuntoNetUnidad2A3.pdb
+/Users/egarduno/Documents/PuntoNetUnidad2A3/obj/Debug/net6.0/PuntoNetUnidad2A3.genruntimeconfig.cache
+/Users/egarduno/Documents/PuntoNetUnidad2A3/obj/Debug/net6.0/ref/PuntoNetUnidad2A3.dll
