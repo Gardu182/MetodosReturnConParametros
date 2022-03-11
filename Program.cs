@@ -31,7 +31,7 @@ namespace MenuGenerico
                     {
                         case 1://Si coincide con 1
                             int area, ladoBase, ladoAltura, result;
-                            double costoInstalacionPasto, latitud, longitud, ubicacionCancha;
+                            double costoInstalacionPasto, latitud, longitud, ubicacionCancha, costoTotalInstalacion ;
 
                             Console.WriteLine("Favor de proporcionar la base " );
                             ladoBase = Convert.ToInt32(Console.ReadLine());
@@ -42,13 +42,15 @@ namespace MenuGenerico
                             result = Convert.ToInt16(Console.ReadLine());
                             costoInstalacionPasto = calcularCostoTotalMetroCuadrado(area, result);
                             Console.WriteLine("Favor de proporcionar su latitud ");
-                            latitud = Convert.ToInt32(Console.ReadLine());
+                            latitud = Convert.ToDouble(Console.ReadLine());
                             Console.WriteLine("Favor de proporcionar su longitud ");
-                            longitud = Convert.ToInt32(Console.ReadLine());
+                            longitud = Convert.ToDouble(Console.ReadLine());
                             ubicacionCancha = calcularDistancia(latitud, longitud);
+                            costoTotalInstalacion = calcularCostoTotal(costoInstalacionPasto,area,ubicacionCancha);
 
 
                             Console.WriteLine("Test " + ubicacionCancha);
+                            Console.WriteLine("Test " + costoTotalInstalacion);
 
                             break;//Salimos del bloque
  
@@ -107,23 +109,31 @@ namespace MenuGenerico
         public static double calcularDistancia(double lat2, double lon2){
             
             double R = 6372.795477598; //Radio de la Tierra
-            double precioTransporte = 40.00;
             double distancia;
             double lat1 = 19.3041477;
             double lon1 = -99.1068475;
-            double Alat = lat2 - lat1;
-            double Alon = lon2 - lon1;
+            double Alat = (lat2) - (lat1);
+            double Alon = (lon2) - (lon1);
+            double sinLat = Math.Sin(Alat/2);
+            double sinLon = Math.Sin(Alon/2);
+            double cosLat1 = Math.Cos(lat1);
+            double cosLat2 = Math.Cos(lat2);
 
+            Console.WriteLine("esto es " + sinLat);
 
-            distancia = 2 * R;
+            distancia = 2 * R * Math.Asin(Math.Sqrt(sinLat + cosLat2 * cosLat2 * sinLon));
 
             return distancia;
 
         }
 
-        public void calcularCostoTotal(){
+        public static double calcularCostoTotal(double precioMetrocuadrado, double area, double distancia){
 
-            //return ubicacionActual;
+            double precioTransporte = 40.00;
+
+            double costoTotal = ((precioMetrocuadrado * area) + (precioTransporte * distancia) * 0.020);
+
+            return costoTotal;
 
         }
 
