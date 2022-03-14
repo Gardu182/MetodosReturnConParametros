@@ -12,15 +12,17 @@ namespace MenuGenerico
     {
         //Método main
         static void Main(string[] args)
-        {             
+        {     
+            int area, ladoBase, ladoAltura, result;
+            double costoInstalacionPasto, latitud, longitud, ubicacionCancha, costoTotalInstalacion;
+            double precioTransporte = 40.00;       
             bool salir = false; //Variable que nos permite saber si el usuario quiere salir o no
             while (!salir) { //Mientras el usuario no quiera salir se repite:
                 try //Envolvemos el código que puede generar error en un bloque try-catch, el error puede ser que no nos de un número como opción
                 {                     
                     //Opciones del menú
                     Console.WriteLine("1. Calcular Presupuesto");
-                    Console.WriteLine("2. Ver Desglose");
-                    Console.WriteLine("3. Salir");
+                    Console.WriteLine("2. Salir");
                     Console.WriteLine("Elige una de las opciones");
                     //Convertimos a entero la opción introducida por el usuario, si ocurre un error al convertir se va al bloque catch
                     int opcion = Convert.ToInt32(Console.ReadLine());
@@ -30,9 +32,6 @@ namespace MenuGenerico
                     switch (opcion)
                     {
                         case 1://Si coincide con 1
-                            int area, ladoBase, ladoAltura, result;
-                            double costoInstalacionPasto, latitud, longitud, ubicacionCancha, costoTotalInstalacion ;
-
                             Console.WriteLine("Favor de proporcionar la base " );
                             ladoBase = Convert.ToInt32(Console.ReadLine());
                             Console.WriteLine("Favor de proporcionar la altura " );
@@ -46,19 +45,15 @@ namespace MenuGenerico
                             Console.WriteLine("Favor de proporcionar su longitud ");
                             longitud = Convert.ToDouble(Console.ReadLine());
                             ubicacionCancha = calcularDistancia(latitud, longitud);
-                            costoTotalInstalacion = calcularCostoTotal(costoInstalacionPasto,area,ubicacionCancha);
-
-
-                            Console.WriteLine("Test " + ubicacionCancha);
-                            Console.WriteLine("Test " + costoTotalInstalacion);
-
+                            costoTotalInstalacion = calcularCostoTotal(costoInstalacionPasto, precioTransporte, ubicacionCancha);
+                            Console.WriteLine("Costo al Cliente");
+                            Console.WriteLine("Precio del transporte = " + precioTransporte.ToString("C"));
+                            Console.WriteLine("Precio por instalacion que es el 15% = " + (costoInstalacionPasto + ubicacionCancha * precioTransporte) * 0.15);
+                            Console.WriteLine("Precio del material que es el 5% = " + (costoInstalacionPasto + ubicacionCancha * precioTransporte) * 0.05);
+                            Console.WriteLine("Total a pagar " + costoTotalInstalacion.ToString("C"));
                             break;//Salimos del bloque
- 
-                        case 2://Si coincide con 2
-                            Console.WriteLine("Opción 2");
-                            break;
 
-                        case 3:
+                        case 2:
                             Console.WriteLine("Hasta luego");
                             salir = true;
                             break;
@@ -83,7 +78,7 @@ namespace MenuGenerico
             return lBase * lAltura;
 
         }
-        public static double calcularCostoTotalMetroCuadrado(int medida, int pasto){
+        public static double calcularCostoTotalMetroCuadrado(int medidaArea, int pasto){
 
             double natural = 1000.00;
             double artificial = 3500.00;
@@ -94,11 +89,11 @@ namespace MenuGenerico
 
             if(pasto == 1){
 
-                costoInstalacion = medida * tipoPasto;
+                costoInstalacion = medidaArea * tipoPasto;
 
             } else {
 
-                costoInstalacion = medida * tipoPasto;
+                costoInstalacion = medidaArea * tipoPasto;
 
             }
             
@@ -112,14 +107,12 @@ namespace MenuGenerico
             double distancia;
             double lat1 = 19.3041477;
             double lon1 = -99.1068475;
-            double Alat = (lat2) - (lat1);
-            double Alon = (lon2) - (lon1);
-            double sinLat = Math.Sin(Alat/2);
-            double sinLon = Math.Sin(Alon/2);
-            double cosLat1 = Math.Cos(lat1);
-            double cosLat2 = Math.Cos(lat2);
-
-            Console.WriteLine("esto es " + sinLat);
+            double Alat = (Math.PI/180)*((lat2) - (lat1));
+            double Alon = (Math.PI/180)*((lon2) - (lon1));
+            double sinLat = Math.Pow(Math.Sin(Alat/2),2);
+            double sinLon = Math.Pow(Math.Sin(Alon/2),2);
+            double cosLat1 = Math.Cos((Math.PI/180)*(lat1));
+            double cosLat2 = Math.Cos((Math.PI/180)*(lat2));
 
             distancia = 2 * R * Math.Asin(Math.Sqrt(sinLat + cosLat2 * cosLat2 * sinLon));
 
@@ -127,13 +120,11 @@ namespace MenuGenerico
 
         }
 
-        public static double calcularCostoTotal(double precioMetrocuadrado, double area, double distancia){
+        public static double calcularCostoTotal(double precioMetrocuadrado, double costoTransporte, double distancia){
 
-            double precioTransporte = 40.00;
+            double costoTotal = precioMetrocuadrado + costoTransporte * distancia;
 
-            double costoTotal = ((precioMetrocuadrado * area) + (precioTransporte * distancia) * 0.020);
-
-            return costoTotal;
+            return costoTotal * 0.20;
 
         }
 
